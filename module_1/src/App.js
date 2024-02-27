@@ -5,7 +5,7 @@ import SearchForm from './components/SearchForm.js';
 import GenreSelect from './components/GenreSelect.js';
 
 function App() {
-  var searchFormProps = {};
+  const searchFormProps = {};
   searchFormProps.initialQuery = "horror";
   searchFormProps.onSearch = (query) => {console.log("search initiated with query: " + query)}
 

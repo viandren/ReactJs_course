@@ -9,14 +9,13 @@ function App() {
   searchFormProps.initialQuery = "horror";
   searchFormProps.onSearch = (query) => {console.log("search initiated with query: " + query)}
 
-  var genreSelectProps = {};
-  genreSelectProps.genreList = ["horror","comedy","fantasy","docu"];
-  genreSelectProps.selected = "fantasy";
-  genreSelectProps.onSelect = (genre) => {console.log("genre selected: " + genre)}
   return <>
           <Counter /> 
           <SearchForm { ...searchFormProps} />
-          <GenreSelect { ...genreSelectProps} />
+          <GenreSelect 
+            genreList={["horror","comedy","fantasy","docu","adventure"]}
+            selected="fantasy"
+            onSelect={(genre) => {console.log("genre selected: " + genre)}} />
         </>;
 }
 

@@ -1,3 +1,5 @@
+import './GenreSelect.css';
+
 import React from "react";
 import { useState } from "react";
 
@@ -12,7 +14,7 @@ return (
     <div className="genre-select">
     {props.genreList.map(function(genre, i){
         return  <button onClick={() => handleClick(genre)} type="submit" key={i} 
-        className={genre == selected ? "selected" : null}>
+        className={genre === selected ? "selected" : null}>
                     {genre}
                 </button>;
         })}

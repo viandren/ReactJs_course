@@ -11,7 +11,7 @@ export default function GenreSelect(props) {
         setSelected(genre)
       };
 return (
-    <div className="genre-select">
+    <div className="genre-select" data-testid="genreSelect">
     {props.genreList.map(function(genre, i){
         return  <button onClick={() => handleClick(genre)} type="submit" key={i} 
         className={genre === selected ? "selected" : null}>

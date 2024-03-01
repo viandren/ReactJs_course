@@ -1,43 +1,29 @@
 import SearchForm from "./SearchForm.js";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
-const onSelect = jest.fn();
 
-afterEach(() => {
-    cleanup(); 
-})
-
-beforeEach(() => {
-
-})
 
 describe ("SearchForm", () => {
 
+    afterEach(() => {
+        cleanup(); 
+    })
+
     test('SearchForm is rendered', () => {
-        render(<SearchForm 
-            initialQuery = "horror"
-            onSearch = {(query) => {console.log("search initiated with query: " + query)}}
-            />);
+        renderComponent((query) => {console.log("search initiated with query: " + query)});
         const searchForm = screen.getByTestId("searchForm");
         expect(searchForm).toBeInTheDocument();
     })
 
     test('Snapshot', () => {
-        const {asFragment} = render(<SearchForm 
-            initialQuery = "horror"
-            onSearch = {(query) => {console.log("search initiated with query: " + query)}}
-            />);
+        const {asFragment} = renderComponent((query) => {console.log("search initiated with query: " + query)});
         expect(asFragment()).toMatchSnapshot();
     })
 
-    test('SearchForm is rendered', () => {
-        render(<SearchForm 
-            initialQuery = "horror or anything"
-            onSearch = {(query) => {console.log("search initiated with query: " + query)}}
-            />);
+    test('SearchForm and serach button are rendered', () => {
+        renderComponent((query) => {console.log("search initiated with query: " + query)});
         
-        const input = screen.getByDisplayValue('horror or anything')
+        const input = screen.getByDisplayValue('horror')
         expect(input).toBeInTheDocument();
         const searchButton = screen.getByText('Search')
         expect(searchButton).toBeInTheDocument();
@@ -45,10 +31,7 @@ describe ("SearchForm", () => {
 
     test('SearchForm typing and submit', () => {
         const onSearch = jest.fn();
-        render(<SearchForm 
-            initialQuery="initial"
-            onSearch={onSearch}
-            />);
+        renderComponent(onSearch);
         
         const input = screen.getByRole('textbox')
         expect(input).toBeInTheDocument();
@@ -62,10 +45,7 @@ describe ("SearchForm", () => {
 
     test('SearchForm button clicked', () => {
         const onSearch = jest.fn();
-        render(<SearchForm 
-            initialQuery="horror"
-            onSearch={onSearch}
-            />);
+        renderComponent(onSearch);
         
         const input = screen.getByDisplayValue('horror')
         expect(input).toBeInTheDocument();
@@ -78,3 +58,10 @@ describe ("SearchForm", () => {
         expect(onSearch).toHaveBeenCalledWith("whatever and something");
     })
 });
+
+function renderComponent(onSearch) {
+    return render(<SearchForm 
+        initialQuery="horror"
+        onSearch={onSearch}
+        />);
+}

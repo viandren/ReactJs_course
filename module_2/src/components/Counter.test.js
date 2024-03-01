@@ -1,22 +1,20 @@
 import Counter from "./Counter.js";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 
-afterEach(() => {
-    cleanup(); 
-})
-
-beforeEach(() => {
-    render(<Counter  />);
-})
-
 describe ("Counter", () => {
 
+    afterEach(() => {
+        cleanup(); 
+    })
+    
     test('Number is rendered', () => {
+        render(<Counter  />);
         const counter = screen.getByTestId("counter");
         expect(counter).toHaveTextContent("15");
     })
 
     test('Decrease button works', () => {
+        render(<Counter  />);
         const counter = screen.getByTestId("counter");
         const decreaseButton = screen.getByText("decrease");
         fireEvent.click(decreaseButton);
@@ -26,6 +24,7 @@ describe ("Counter", () => {
     })
     
     test('Increase button works', () => {
+        render(<Counter  />);
         const counter = screen.getByTestId("counter");
         const increaseButton = screen.getByText("increase");
         fireEvent.click(increaseButton);
@@ -35,6 +34,7 @@ describe ("Counter", () => {
     })
     
     test('Both buttons work', () => {
+        render(<Counter  />);
         const counter = screen.getByTestId("counter");
         const decreaseButton = screen.getByText("decrease");
         const increaseButton = screen.getByText("increase");

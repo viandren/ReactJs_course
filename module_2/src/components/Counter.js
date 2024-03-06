@@ -10,7 +10,7 @@ function Counter() {
 
     return React.createElement(
         "div",
-        {className: "counter"},
+        {className: "counter", "data-testid": "counter"},
         React.createElement(
             "p",
             {},

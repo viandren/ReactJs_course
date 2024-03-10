@@ -10,16 +10,20 @@ exports[`SearchForm Snapshot 1`] = `
       data-testid="form"
     >
       <input
+        class="search-input"
         name="searchInput"
-        value="horror"
+        placeholder="What do you want to watch?"
       />
       <button
+        class="search-button"
         type="submit"
       >
         Search
       </button>
     </form>
-    <h5 />
+    <h5
+      class="search-result"
+    />
   </div>
 </DocumentFragment>
 `;

@@ -23,7 +23,7 @@ describe ("SearchForm", () => {
     test('SearchForm and serach button are rendered', () => {
         renderComponent((query) => {console.log("search initiated with query: " + query)});
         
-        const input = screen.getByDisplayValue('horror')
+        const input = screen.getByRole('textbox')
         expect(input).toBeInTheDocument();
         const searchButton = screen.getByText('Search')
         expect(searchButton).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe ("SearchForm", () => {
         const onSearch = jest.fn();
         renderComponent(onSearch);
         
-        const input = screen.getByDisplayValue('horror')
+        const input = screen.getByRole('textbox')
         expect(input).toBeInTheDocument();
         const searchButton = screen.getByRole('button', 'Search')
         expect(searchButton).toBeInTheDocument();

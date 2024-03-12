@@ -2,9 +2,8 @@ import './MovieDetails.css';
 
 import React from "react";
 
-export default function MovieDetails(props) {
+export default function MovieDetails({ movie: m }) {
 
-    const m = props.movie;
 
 return (
     <div className="movie-details" data-testid="movieDetails">

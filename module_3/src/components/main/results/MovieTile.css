@@ -41,7 +41,7 @@
     margin: 1rem;
     right: 4rem;
 }
-.context-icon:after {
+.movie-tile:hover .context-icon:after {
     content: '•••';
     position: absolute;
     top: 50%;

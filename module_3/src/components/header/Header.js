@@ -8,7 +8,7 @@ import MovieDetails from './MovieDetails.js';
 export default function Header(props) {
 
   const searchFormProps = {};
-  searchFormProps.initialQuery = "";
+  searchFormProps.initialQuery = "What do you want to watch?";
   searchFormProps.onSearch = (query) => {props.filterByText(query)}
 
     let headerContent;

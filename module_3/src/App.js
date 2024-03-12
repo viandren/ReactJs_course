@@ -55,7 +55,6 @@ function App() {
   }
 
   return <div className="app">
-          <Counter /> 
           <Header movie={selectedMovie} 
           handleSelection={handleSelection}
           movies={movies}

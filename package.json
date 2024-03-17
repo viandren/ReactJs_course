@@ -8,7 +8,10 @@
     "@testing-library/user-event": "^13.5.0",
     "cypress": "^13.6.6",
     "react": "^18.2.0",
+    "react-datepicker": "^6.3.0",
     "react-dom": "^18.2.0",
+    "react-multi-select-component": "^4.3.4",
+    "react-portal": "^4.2.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },

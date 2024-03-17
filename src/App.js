@@ -1,6 +1,5 @@
 
 import './App.css';
-import Counter from "./components/Counter.js";
 import Header from './components/header/Header.js';
 import Main from './components/main/Main.js';
 
@@ -63,8 +62,9 @@ function App() {
           movies={movies}
           filterByGenre={filterByGenre}
           setSortBy={setSortBy}/>
-        </div>;
+</div>
 }
+
 
 
 

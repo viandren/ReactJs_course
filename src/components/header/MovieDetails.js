@@ -7,7 +7,7 @@ export default function MovieDetails({ movie: m }) {
 
 return (
     <div className="movie-details" data-testid="movieDetails">
-        <img className="details-poster" src={"/movie-posters/" + m.imageUrl} alt="" />
+        <img className="details-poster" src={m.imageUrl} alt="" />
         <div className="details-box">
             <div className="details-title-row">
                 <div className="details-title">{m.title}</div>

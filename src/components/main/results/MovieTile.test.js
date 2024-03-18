@@ -16,7 +16,7 @@ describe ("MovieTile", () => {
             "imageUrl": "testImageUrl",
             "title": "testTitle",
             "releaseYear": "testReleaseYear",
-            "genres": "testGenres",
+            "genres": ["testGenres"],
             "rating": "testRating",
             "duration": "testDuration",
             "description": "testDescription"
@@ -40,7 +40,7 @@ describe ("MovieTile", () => {
             "imageUrl": "testImageUrl",
             "title": "testTitle",
             "releaseYear": "testReleaseYear",
-            "genres": "testGenres",
+            "genres": ["testGenres"],
             "rating": "testRating",
             "duration": "testDuration",
             "description": "testDescription"

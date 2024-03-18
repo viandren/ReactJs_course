@@ -19,8 +19,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         }
         const { container } = renderComponent(movie);
         const movieForm = screen.getByTestId("movieForm");
@@ -37,7 +36,7 @@ describe ("MovieDetails", () => {
         expect(testDuration).toBeInTheDocument();
         const testDescription = screen.getByDisplayValue("testDescription");
         expect(testDescription).toBeInTheDocument();
-        const testUrlInput = screen.getByDisplayValue("testUrl");
+        const testUrlInput = screen.getByDisplayValue("testImageUrl");
         expect(testUrlInput).toBeInTheDocument();
 
     })
@@ -53,8 +52,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         }
         const onSubmit = jest.fn();
         const { container } = renderComponent(movie, onSubmit);
@@ -72,8 +70,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         });
         
     })
@@ -88,8 +85,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         }
         const onSubmit = jest.fn();
         renderComponent(movie, onSubmit);
@@ -109,8 +105,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         });
         
     })
@@ -125,16 +120,13 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         }
         const onSubmit = jest.fn();
         const { container } = renderComponent(movie, onSubmit);
         const titleInput = container.querySelector(`input[name="rating"]`);
         expect(titleInput).toBeInTheDocument();
-        act(() => {
-            fireEvent.change(titleInput, { target: { value: 'new rating' } });
-        });
+        fireEvent.change(titleInput, { target: { value: 'new rating' } });
         const submitButton = screen.getByText('submit')
         fireEvent.click(submitButton);
         expect(onSubmit).toHaveBeenCalledTimes(1);
@@ -146,8 +138,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "new rating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         });
         
     })
@@ -162,14 +153,13 @@ describe ("MovieDetails", () => {
             "genres": ["Horror"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         }
         const onSubmit = jest.fn();
         const { container } = renderComponent(movie, onSubmit);
         const genresInput = screen.getByText("Horror");
         expect(genresInput).toBeInTheDocument();
-        await fireEvent.click(genresInput);
+        fireEvent.click(genresInput);
         const genresInputOption = screen.getByText("Adventure");
         act(() => {
             fireEvent.click(genresInputOption);
@@ -193,8 +183,7 @@ describe ("MovieDetails", () => {
             "genres": ["Horror","Adventure","Docu"],
             "rating": "testRating",
             "duration": "testDuration",
-            "description": "testDescription",
-            "url": "testUrl"
+            "description": "testDescription"
         });
         
     })

@@ -9,7 +9,8 @@ export default function Dialog(props) {
 
 
     return  <>
-        {props.dialogIsOpen && (<PortalWithState closeOnOutsideClick closeOnEsc>
+        {props.dialogIsOpen && (
+      <PortalWithState closeOnOutsideClick closeOnEsc node={document.getElementsByClassName("app")}>
         {({ openPortal, closePortal, isOpen, portal }) => {
           return <div data-testid="dialog">
             <div className="portal">

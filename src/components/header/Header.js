@@ -22,9 +22,13 @@ export default function Header(props) {
     const openDialog = () => {
         setDialogIsOpen(true);
     }
-    const closeDialog = (e) => {
+    const closeDialog = () => {
+        setDialogIsOpen(false);
+    }
+    const submitDialog = (e) => {
         console.log(e);
         setDialogIsOpen(false);
+        props.addMovie(e);
     }
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
     
@@ -37,7 +41,7 @@ export default function Header(props) {
 
     return  <div className="header" style={{height: height, transition: "height 0.15s ease-out"}}>
         <img className="header-bg" src="/netflix_image.jpg" alt="background"></img>
-        <Dialog closeDialog={closeDialog} title="Add movie" children={<MovieForm onSubmit={closeDialog}/>} dialogIsOpen={dialogIsOpen}></Dialog> 
+        <Dialog closeDialog={closeDialog} title="Add movie" children={<MovieForm onSubmit={submitDialog}/>} dialogIsOpen={dialogIsOpen}></Dialog> 
         <div className="text-title-row">
             <span className="text-netflix">netflix</span>
             <span className="text-roulette">roulette</span>

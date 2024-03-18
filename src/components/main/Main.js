@@ -12,6 +12,7 @@ export default function Main(props) {
     <Navbar filterByGenre={props.filterByGenre}
           setSortBy={props.setSortBy}/>
     <Results handler={props.handleSelection}
-          movies={props.movies}/>
+          movies={props.movies}
+          editMovie={props.editMovie}/>
     </div>;
 }

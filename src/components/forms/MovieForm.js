@@ -5,19 +5,19 @@ import React from "react";
 import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import DatePicker from "react-datepicker";
+import FocusTrap from "focus-trap-react";
 
 export default function MovieForm({ movie: m ,onSubmit}) {
 
     if (m === undefined) {
         m = {
-            "id": "0",
+            "id": generateGuid(),
             "imageUrl": "Raiders of the lost ark.jpg",
             "title": "Raiders of the lost ark",
             "releaseYear": "1981",
             "genres": ["Horror","Adventure"],
             "rating": "8.4",
             "duration": "1h 55min",
-            "url": "testurl",
             "description": "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers."
         }
     }
@@ -45,13 +45,18 @@ export default function MovieForm({ movie: m ,onSubmit}) {
   }
 
 
-    return  <div data-testid="movieForm">
+    return  <div data-testid="movieForm" id="movieform">
+    <FocusTrap 
+    focusTrapOptions={{
+      fallbackFocus: '#movieform',
+      clickOutsideDeactivates: true
+    }}>
     <form onSubmit={handleSubmit}>
         <div className='movie-form-first-column'>
             <div className='movie-form-label'>title</div>
             <input className='movie-form-input' value={formData.title} name="title" onChange={handleChange}></input>
             <div className='movie-form-label'>movie url</div>
-            <input className='movie-form-input' value={formData.url} name="url" onChange={handleChange}></input>
+            <input className='movie-form-input' value={formData.imageUrl} name="imageUrl" onChange={handleChange}></input>
             <div className='movie-form-label'>genre</div>
             <MultiSelect
                 className='movie-form-genre-input'
@@ -88,5 +93,12 @@ export default function MovieForm({ movie: m ,onSubmit}) {
             <button className='movie-form-reset-button movie-form-button'>reset</button>
         </div>
     </form>
+    </FocusTrap>
     </div>;
 }
+
+
+function generateGuid() {
+  return Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+  }

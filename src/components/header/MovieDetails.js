@@ -13,7 +13,7 @@ return (
                 <div className="details-title">{m.title}</div>
                 <div className="details-rating">{m.rating}</div>
             </div>
-            <div className="details-genres">{m.genres}</div>
+            <div className="details-genres">{m.genres.join(', ')}</div>
             <div className="duration-row">
                 <div className="details-release-year">{m.releaseYear}</div>
                 <div className="details-duration">{m.duration}</div>

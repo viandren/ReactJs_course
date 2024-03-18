@@ -68,8 +68,14 @@ function App() {
     tempList.push(movie);
     setMovieList(tempList);
     setMovies(sortMovies(tempList));
-
   }
+
+  const deleteMovie = (movie) => {
+    let tempList = JSON.parse(JSON.stringify(movieList.filter(m => m.id != movie.id)));
+    setMovieList(tempList);
+    setMovies(sortMovies(tempList));
+  }
+
 
   return <div className="app" id="app">
           <Header movie={selectedMovie} 
@@ -81,7 +87,8 @@ function App() {
           movies={movies}
           filterByGenre={filterByGenre}
           setSortBy={setSortBy}
-          editMovie={editMovie}/>
+          editMovie={editMovie}
+          deleteMovie={deleteMovie}/>
 </div>
 }
 

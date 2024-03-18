@@ -1,16 +1,10 @@
 .portal {
     position: absolute;
-    width: 80%;
-    max-width: 60rem;
-    min-width: 40rem;
-    height: 42rem;
     background-color: #232323;
     margin-top: 5rem;
     top: 2rem;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    left: 25%;
+    width: auto;
     z-index: 1;
 }
 

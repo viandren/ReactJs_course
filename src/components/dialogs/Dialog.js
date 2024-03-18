@@ -14,7 +14,7 @@ export default function Dialog(props) {
         {({ openPortal, closePortal, isOpen, portal }) => {
           return <div data-testid="dialog">
             <div className="portal">
-            <button className="close-dialog" onClick={props.closeDialog} >x</button>
+            <button className="close-dialog" onClick={props.closeDialog} data-testid="closeDialogButton">x</button>
             <h2 className="dialog-title">{props.title}</h2>
                 {props.children}
             </div>

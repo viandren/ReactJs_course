@@ -13,6 +13,7 @@ export default function Main(props) {
           setSortBy={props.setSortBy}/>
     <Results handler={props.handleSelection}
           movies={props.movies}
-          editMovie={props.editMovie}/>
+          editMovie={props.editMovie}
+          deleteMovie={props.deleteMovie}/>
     </div>;
 }

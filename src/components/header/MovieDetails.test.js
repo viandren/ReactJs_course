@@ -16,7 +16,7 @@ describe ("MovieDetails", () => {
             "imageUrl": "testImageUrl",
             "title": "testTitle",
             "releaseYear": "testReleaseYear",
-            "genres": "testGenres",
+            "genres": ["testGenres"],
             "rating": "testRating",
             "duration": "testDuration",
             "description": "testDescription"

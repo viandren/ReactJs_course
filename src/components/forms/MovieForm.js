@@ -10,16 +10,16 @@ import FocusTrap from "focus-trap-react";
 export default function MovieForm({ movie: m ,onSubmit}) {
 
     if (m === undefined) {
-        m = {
-            "id": generateGuid(),
-            "imageUrl": "Raiders of the lost ark.jpg",
-            "title": "Raiders of the lost ark",
-            "releaseYear": "1981",
-            "genres": ["Horror","Adventure"],
-            "rating": "8.4",
-            "duration": "1h 55min",
-            "description": "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers."
-        }
+      m = {
+        "id": generateGuid(),
+        "imageUrl": "",
+        "title": "",
+        "releaseYear": "",
+        "genres": [],
+        "rating": "",
+        "duration": "",
+        "description": ""
+      }
     }
 
 
@@ -44,6 +44,19 @@ export default function MovieForm({ movie: m ,onSubmit}) {
     onSubmit(formData)
   }
 
+  const reset = () => {
+    m = {
+      "id": generateGuid(),
+      "imageUrl": "",
+      "title": "",
+      "releaseYear": "",
+      "genres": [],
+      "rating": "",
+      "duration": "",
+      "description": ""
+    }
+    setFormData(m);
+  }
 
     return  <div data-testid="movieForm" id="movieform">
     <FocusTrap 
@@ -51,14 +64,16 @@ export default function MovieForm({ movie: m ,onSubmit}) {
       fallbackFocus: '#movieform',
       clickOutsideDeactivates: true
     }}>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='movie-form'>
         <div className='movie-form-first-column'>
             <div className='movie-form-label'>title</div>
-            <input className='movie-form-input' value={formData.title} name="title" onChange={handleChange}></input>
+            <input className='movie-form-input' value={formData.title} name="title" onChange={handleChange} data-testid="titleInput"></input>
             <div className='movie-form-label'>movie url</div>
-            <input className='movie-form-input' value={formData.imageUrl} name="imageUrl" onChange={handleChange}></input>
+            <input className='movie-form-input' value={formData.imageUrl} name="imageUrl" 
+            placeholder="https://" onChange={handleChange} data-testid="urlInput"></input>
             <div className='movie-form-label'>genre</div>
             <MultiSelect
+                data-testid="genreSelect"
                 className='movie-form-genre-input'
                 name="genres"
                 placeholder="Select Genre"
@@ -70,6 +85,8 @@ export default function MovieForm({ movie: m ,onSubmit}) {
         <div className='movie-form-second-column'>
             <div className='movie-form-label'>release date</div>
             <DatePicker
+               name="datePicker"
+               placeholderText="Select Date"
                type="string"
                className="movie-form-input"
                selected={selectedDate}
@@ -79,18 +96,20 @@ export default function MovieForm({ movie: m ,onSubmit}) {
                yearItemNumber={9}
             />
             <div className='movie-form-label'>rating</div>
-            <input className='movie-form-input' value={formData.rating} name="rating" onChange={handleChange}></input>
+            <input className='movie-form-input' value={formData.rating} name="rating" 
+            data-testid="ratingInput" onChange={handleChange}></input>
             <div className='movie-form-label'>runtime</div>
-            <input className='movie-form-input' value={formData.duration} name="duration" onChange={handleChange}></input>
+            <input className='movie-form-input' value={formData.duration} 
+            data-testid="durationInput" name="duration" onChange={handleChange}></input>
         </div>
         <div className='movie-form-textarea-column'>
             <div className='movie-form-label'>overview</div>
-            <textarea className='movie-form-textarea movie-form-input' rows="5"  
+            <textarea className='movie-form-textarea movie-form-input' rows="5" data-testid="descriptionInput"
                     value={formData.description} name="description" onChange={handleChange}></textarea>
         </div>
         <div className='movie-form-control-column'>
-            <button className='movie-form-submit-button movie-form-button' type="submit" >submit</button>
-            <button className='movie-form-reset-button movie-form-button'>reset</button>
+            <button className='movie-form-submit-button movie-form-button' type="submit" data-testid="submitButton">submit</button>
+            <button className='movie-form-reset-button movie-form-button' type="button" data-testid="resetButton" onClick={reset}>reset</button>
         </div>
     </form>
     </FocusTrap>

@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import Dialog from '../../dialogs/Dialog.js';
 import MovieForm from '../../forms/MovieForm.js';
+import DeleteForm from '../../forms/DeleteForm.js';
 import ReactDOM from 'react-dom';
 
 export default function MovieTile(props) {
@@ -25,17 +26,32 @@ export default function MovieTile(props) {
     }
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
-    const dialog = <Dialog closeDialog={closeDialog} title="Edit movie" 
+
+    const openDeleteDialog = () => {
+        setDeleteDialogIsOpen(true);
+    }
+    const closeDeleteDialog = (e) => {
+        setDeleteDialogIsOpen(false);
+    }
+    const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
+
+
+    const dialogForEditing = <Dialog closeDialog={closeDialog} title="Edit movie" 
     children={<MovieForm movie={props.movie} onSubmit={submitDialog}/>} dialogIsOpen={dialogIsOpen}></Dialog>;
 
-    const portal = ReactDOM.createPortal( dialog, document.body);
+    const dialogForDeleting = <Dialog closeDialog={closeDeleteDialog} title="Edit movie" 
+    children={<DeleteForm onSubmit={() => {props.deleteMovie(props.movie);closeDeleteDialog();}}/>} dialogIsOpen={deleteDialogIsOpen}></Dialog>;
+
+    const portalForEditing = ReactDOM.createPortal( dialogForEditing, document.body);
+    const portalForDeleting = ReactDOM.createPortal( dialogForDeleting, document.body);
 
     let dropdownContent = showDropdown ? <DropDown closeDropdown={setShowDropdown} editMove={props.editMove} 
-    movie={props.movie} openDialog={openDialog}/> : ""
+    movie={props.movie} openDialog={openDialog} openDeleteDialog={openDeleteDialog}/> : ""
 
 return (
     <>
-    {portal}
+    {portalForDeleting}
+    {portalForEditing}
     <div className="movie-tile" data-testid="movieTile" onClick={() => props.handler(props.movie.id)}> 
         <div className="context-icon" onClick={(event) => {event.stopPropagation();setShowDropdown(!showDropdown);}}></div>
         {dropdownContent}

@@ -1,3 +1,9 @@
+#movieform{
+    width: 80%;
+    max-width: 60rem;
+    min-width: 40rem;
+    height: 42rem;
+}
 .movie-form-first-column{
     width: 55%;
     display: inline-block;
@@ -68,8 +74,6 @@
     padding: 0rem !important;
 }
 
-.dropdown-content{
-}
 .rmsc {
     --rmsc-main: #F65261 !important;
     --rmsc-hover: #232323 !important;

@@ -10,7 +10,8 @@ export default function Results(props) {
 return (
     <div className="results" data-testid="results">
         {data.map(function(movie, i){
-        return  <MovieTile movie={data[i]} handler={props.handler} key={i} />;})
+        return  <MovieTile movie={data[i]} handler={props.handler} key={i} 
+        editMovie={props.editMovie} deleteMovie={props.deleteMovie}/>;})
         }
     </div>
   )

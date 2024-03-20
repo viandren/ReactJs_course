@@ -13,8 +13,8 @@ export default function GenreSelect(props) {
 return (
     <div className="genre-select" data-testid="genreSelect">
     {props.genreList.map(function(genre, i){
-        return  <button onClick={() => handleClick(genre)} type="submit" key={i} 
-        className={genre === selected ? "selected" : null}>
+        return  <button  onClick={() => handleClick(genre)} type="submit" key={i} 
+        className={genre === selected ? "genre-button selected" : "genre-button"}>
                     {genre}
                 </button>;
         })}

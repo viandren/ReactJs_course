@@ -15,10 +15,10 @@ export default {
 
 const testMovie = {
   "id": "3",
-  "imageUrl": "Fahrenheit-911.jpg",
+  "imageUrl": "https://m.media-amazon.com/images/I/51dcaJOAfrL._AC_UF894,1000_QL80_.jpg",
   "title": "Fahrenheit 9/11",
   "releaseYear": "2004",
-  "genres": "Documentary",
+  "genres": ["Documentary", "Comedy"],
   "rating": "7.5",
   "duration": "2h 2min",
   "description": "Michael Moore's view on what happened to the United States after September 11 and how the Bush Administration allegedly used the tragic event to push forward its agenda for unjust wars in Afghanistan and Iraq."
@@ -43,7 +43,7 @@ export const EveryDataIsCorrect = {
     expect(testTitle).toBeInTheDocument();
     const testReleaseYear = canvas.getByText("2004");
     expect(testReleaseYear).toBeInTheDocument();
-    const testGenres = canvas.getByText("Documentary");
+    const testGenres = canvas.getByText("Documentary, Comedy");
     expect(testGenres).toBeInTheDocument();
     const testRating = canvas.getByText("7.5");
     expect(testRating).toBeInTheDocument();

@@ -15,10 +15,10 @@ export default {
 
 const testMovie = {
     "id": "6",
-    "imageUrl": "troy.jpg",
+    "imageUrl": "https://m.media-amazon.com/images/I/51URq2GUSaL._AC_UF894,1000_QL80_.jpg",
     "title": "Troy",
     "releaseYear": "2002",
-    "genres": "Adventure, Drama",
+    "genres": ["Adventure","Drama"],
     "rating": "7.3",
     "duration": "2h 43min",
     "description": "An adaptation of Homer's great epic, the film follows the assault on Troy by the united Greek forces and chronicles the fates of the men involved."

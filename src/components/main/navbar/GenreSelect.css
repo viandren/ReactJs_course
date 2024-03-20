@@ -1,9 +1,9 @@
 .selected {
-    border-bottom: 4px solid #F65261;
+    border-bottom: 4px solid #F65261 !important;
     margin-bottom: -4px;
   }
 
-button {
+.genre-button {
   display: block;
   color: white;
   text-transform: uppercase;

@@ -112,7 +112,7 @@ const fun = fn();
 
 export const EditMovie = {
   args: {
-    title: "Add a movie",
+    title: "Edit movie",
     dialogIsOpen: true,
     children: <MovieForm onSubmit={fun}
     movie= {{
@@ -131,7 +131,7 @@ export const EditMovie = {
 
     const dialog = canvas.getByTestId("dialog");
     await expect(dialog).toBeInTheDocument();
-    const title = canvas.getByText("Add a movie");
+    const title = canvas.getByText("Edit movie");
     expect(title).toBeInTheDocument();
     const closeDialogButton = canvas.getByTestId("closeDialogButton");
     await expect(closeDialogButton).toBeInTheDocument();

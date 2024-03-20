@@ -9,6 +9,8 @@ import FocusTrap from "focus-trap-react";
 
 export default function MovieForm({ movie: m ,onSubmit}) {
 
+  let isNewMovie = false;
+
     if (m === undefined) {
       m = {
         "id": generateGuid(),
@@ -20,6 +22,7 @@ export default function MovieForm({ movie: m ,onSubmit}) {
         "duration": "",
         "description": ""
       }
+      isNewMovie = true;
     }
 
 
@@ -45,15 +48,22 @@ export default function MovieForm({ movie: m ,onSubmit}) {
   }
 
   const reset = () => {
-    m = {
-      "id": generateGuid(),
-      "imageUrl": "",
-      "title": "",
-      "releaseYear": "",
-      "genres": [],
-      "rating": "",
-      "duration": "",
-      "description": ""
+    if (isNewMovie) {
+      m = {
+        "id": generateGuid(),
+        "imageUrl": "",
+        "title": "",
+        "releaseYear": "",
+        "genres": [],
+        "rating": "",
+        "duration": "",
+        "description": ""
+      }
+      setSelectedDate("")
+      setFormData(m);
+    } else {
+      setSelectedDate(Date.parse(m.releaseYear))
+      setFormData((prevFormData) => ({ ...prevFormData, ["releaseYear"]: m.releaseYear }));
     }
     setFormData(m);
   }

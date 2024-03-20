@@ -39,7 +39,7 @@ export default function MovieTile(props) {
     const dialogForEditing = <Dialog closeDialog={closeDialog} title="Edit movie" 
     children={<MovieForm movie={props.movie} onSubmit={submitDialog}/>} dialogIsOpen={dialogIsOpen}></Dialog>;
 
-    const dialogForDeleting = <Dialog closeDialog={closeDeleteDialog} title="Edit movie" 
+    const dialogForDeleting = <Dialog closeDialog={closeDeleteDialog} title="Delete movie" 
     children={<DeleteForm onSubmit={() => {props.deleteMovie(props.movie);closeDeleteDialog();}}/>} dialogIsOpen={deleteDialogIsOpen}></Dialog>;
 
     const portalForEditing = ReactDOM.createPortal( dialogForEditing, document.body);

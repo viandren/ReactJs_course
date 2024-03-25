@@ -10,7 +10,7 @@ export default function Navbar(props) {
 
     return   <div className="navbar">
         <GenreSelect 
-      genreList={["all", "horror","comedy","fantasy","docu","adventure", "action", "drama"]}
+      genreList={["all", "horror","comedy","fantasy","romance","adventure", "action", "drama"]}
       selected="all"
       onSelect={(genre) => {props.filterByGenre(genre);}} />
       <SortControl sortByOptions={["Release Date", "Title"]} setSortBy={props.setSortBy} defaultValue="Release Date"/>

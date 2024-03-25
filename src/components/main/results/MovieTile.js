@@ -52,13 +52,17 @@ return (
     <>
     {portalForDeleting}
     {portalForEditing}
-    <div className="movie-tile" data-testid="movieTile" onClick={() => props.handler(props.movie.id)}> 
+    <div className="movie-tile" data-testid="movieTile" onClick={() => props.setSelectedMovieId(props.movie.id)}> 
         <div className="context-icon" onClick={(event) => {event.stopPropagation();setShowDropdown(!showDropdown);}}></div>
         {dropdownContent}
-        <img className="poster" src={props.movie.imageUrl} alt="" />
+        <img className="poster" src={props.movie.poster_path} alt=""
+        onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src="https://www.popcorn.app/assets/app/images/placeholder-movieimage.png";
+          }}/>
         <div className="title-row">
             <div className="title">{props.movie.title}</div>
-            <div className="release-year">{props.movie.releaseYear}</div>
+            <div className="release-year">{new Date(props.movie.release_date).getFullYear()}</div>
         </div>
         <div className="genres">{props.movie.genres.join(', ')}</div>
     </div>

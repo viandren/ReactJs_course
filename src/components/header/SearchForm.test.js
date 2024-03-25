@@ -61,7 +61,7 @@ describe ("SearchForm", () => {
 
 function renderComponent(onSearch) {
     return render(<SearchForm 
-        initialQuery="horror"
-        onSearch={onSearch}
+        placeholderText="horror"
+        setSearchByTitle={onSearch}
         />);
 }

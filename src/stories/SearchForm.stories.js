@@ -17,8 +17,8 @@ export default {
 
 export const Basic = {
   args: {
-    initialQuery: "Search...",
-    onSearch: action("filterByText")
+    placeholderText: "Search...",
+    setSearchByTitle: action("setSearchByTitle")
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
@@ -28,7 +28,7 @@ export const Basic = {
 
     const searchButton = canvas.getByText("Search");
     await userEvent.click(searchButton);
-    expect(args.onSearch).toHaveBeenCalledTimes(1);
+    expect(args.setSearchByTitle).toHaveBeenCalledTimes(1);
   }
 
 
@@ -36,8 +36,8 @@ export const Basic = {
 
 export const SearchTest = {
     args: {
-      initialQuery: "Search...",
-      onSearch: action("filterByText")
+      placeholderText: "Search...",
+      setSearchByTitle: action("setSearchByTitle")
     },
     play: async ({ args, canvasElement }) => {
       const canvas = within(canvasElement);
@@ -49,8 +49,8 @@ export const SearchTest = {
   
       const searchButton = canvas.getByText("Search");
       await userEvent.click(searchButton);
-      expect(args.onSearch).toHaveBeenCalledTimes(1);
-      expect(args.onSearch).toHaveBeenCalledWith("new search query");
+      expect(args.setSearchByTitle).toHaveBeenCalledTimes(1);
+      expect(args.setSearchByTitle).toHaveBeenCalledWith("new search query");
     }
   };
   
@@ -58,8 +58,8 @@ export const SearchTest = {
 
 export const SearchTestMultipleTimes = {
     args: {
-      initialQuery: "Search...",
-      onSearch: action("filterByText")
+      placeholderText: "Search...",
+      setSearchByTitle: action("setSearchByTitle")
     },
     play: async ({ args, canvasElement }) => {
       const canvas = within(canvasElement);
@@ -79,7 +79,7 @@ export const SearchTestMultipleTimes = {
       await userEvent.type(searchInput, " and this");
       await userEvent.click(searchButton);
 
-      expect(args.onSearch).toHaveBeenCalledTimes(3);
-      expect(args.onSearch).toHaveBeenLastCalledWith("search this and this and this");
+      expect(args.setSearchByTitle).toHaveBeenCalledTimes(3);
+      expect(args.setSearchByTitle).toHaveBeenLastCalledWith("search this and this and this");
     }
   };

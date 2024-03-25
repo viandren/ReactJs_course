@@ -13,20 +13,20 @@ describe ("MovieTile", () => {
 
         const movie = {
             "id": "testId",
-            "imageUrl": "testImageUrl",
+            "poster_path": "testImageUrl",
             "title": "testTitle",
-            "releaseYear": "testReleaseYear",
+            "release_date": "1999-05-23",
             "genres": ["testGenres"],
-            "rating": "testRating",
-            "duration": "testDuration",
-            "description": "testDescription"
+            "vote_average": "testRating",
+            "runtime": "testDuration",
+            "overview": "testDescription"
         }
         renderComponent(movie, () => {});
         const movieTile = screen.getByTestId("movieTile");
         expect(movieTile).toBeInTheDocument();
         const testTitle = screen.getByText("testTitle");
         expect(testTitle).toBeInTheDocument();
-        const testReleaseYear = screen.getByText("testReleaseYear");
+        const testReleaseYear = screen.getByText("1999");
         expect(testReleaseYear).toBeInTheDocument();
         const testGenres = screen.getByText("testGenres");
         expect(testGenres).toBeInTheDocument();
@@ -37,13 +37,13 @@ describe ("MovieTile", () => {
         
         const movie = {
             "id": "testId",
-            "imageUrl": "testImageUrl",
+            "poster_path": "testImageUrl",
             "title": "testTitle",
-            "releaseYear": "testReleaseYear",
+            "release_date": "1999-05-23",
             "genres": ["testGenres"],
-            "rating": "testRating",
-            "duration": "testDuration",
-            "description": "testDescription"
+            "vote_average": "testRating",
+            "runtime": "testDuration",
+            "overview": "testDescription"
         }
         const mockedSelectionHandler = jest.fn();
         renderComponent(movie, mockedSelectionHandler);
@@ -57,5 +57,5 @@ describe ("MovieTile", () => {
 });
 
 function renderComponent(movie, selectionHandler) {
-    render(<MovieTile movie={movie} handler={selectionHandler} key={1} />);
+    render(<MovieTile movie={movie} setSelectedMovieId={selectionHandler} key={1} />);
 }

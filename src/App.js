@@ -4,56 +4,23 @@ import Header from './components/header/Header.js';
 import Main from './components/main/Main.js';
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import jsonData from './data/TestData.json';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 function App() {
 
-  
-  const [movieList, setMovieList] = useState([...jsonData]);
-  
-  const [selectedMovie, setSelectedMovie] = useState(undefined);
+  const queryClient = new QueryClient();
 
-  const handleSelection = movieId =>  {
-    setSelectedMovie(movies.filter(m => m.id === movieId).at(0));
+  const [selectedMovieId, setSelectedMovieIdState] = useState(undefined);
 
+  const setSelectedMovieId = movieId =>  {
+    setSelectedMovieIdState(movieId);
     window.scrollTo(0, 0);
   }
 
-  const [sortBy, setSortByState] = useState("");
-  const setSortBy = text => {
-    setSortByState(text);
-  }
-  useEffect(() => {
-    setMovies(sortMovies(movies));
-  },[sortBy]);
-
-  const [movies, setMovies] = useState(movieList.sort((a, b) => {return a.releaseYear-b.releaseYear}));
-
-  const filterByGenre = async (filterBy) => {
-    setMovies(sortMovies(movieList.filter(m => {return filterBy === "" 
-                    || filterBy === "all" || m.genres.join('-').toLowerCase().indexOf(filterBy) > -1})));
-    
-  }
-
-  const sortMovies = movies => {
-    const deepCopyObj = JSON.parse(JSON.stringify(movies));
-    if (sortBy.toLowerCase() === "title") {
-      return deepCopyObj.sort(
-        function(a, b) {
-          return a.title.localeCompare(b.title);
-        });
-    } else {
-      return deepCopyObj.sort((a, b) => {return a.releaseYear-b.releaseYear});
-    }
-  }
-
-  const filterByText = (text) => {
-    setMovies(sortMovies(movieList.filter(m => {return text === "" || text === "all" 
-    || m.title.toLowerCase().indexOf(text) > -1
-    || m.genres.join('-').toLowerCase().indexOf(text) > -1})));
-  }
+  const [searchByTitle, setSearchByTitle] = useState('');
+  /*
 
   const addMovie = (movie) => {
     console.log(movie);
@@ -75,24 +42,25 @@ function App() {
     setMovieList(tempList);
     setMovies(sortMovies(tempList));
   }
+*/
 
-
-  return <div className="app" id="app">
-          <Header movie={selectedMovie} 
-          handleSelection={handleSelection}
-          movies={movies}
-          filterByText={filterByText}
-          addMovie={addMovie}/>
-          <Main handleSelection={handleSelection}
-          movies={movies}
-          filterByGenre={filterByGenre}
-          setSortBy={setSortBy}
+  return <QueryClientProvider client={queryClient}>
+      <div className="app" id="app">
+          <Header 
+          selectedMovieId={selectedMovieId}
+          setSelectedMovieId={setSelectedMovieId}
+          setSearchByTitle={setSearchByTitle}
+          /*
+          addMovie={addMovie}*//>
+          <Main 
+          setSelectedMovieId={setSelectedMovieId}
+          searchByTitle={searchByTitle}
+          /*
           editMovie={editMovie}
-          deleteMovie={deleteMovie}/>
-</div>
+          deleteMovie={deleteMovie}*//>
+      </div>
+    </QueryClientProvider>
 }
-
-
 
 
 export default App;

@@ -11,12 +11,12 @@ import MovieForm from '../forms/MovieForm.js';
 export default function Header(props) {
 
   const searchFormProps = {};
-  searchFormProps.initialQuery = "What do you want to watch?";
-  searchFormProps.onSearch = (query) => {props.filterByText(query)}
+  searchFormProps.placeholderText = "What do you want to watch?";
+  searchFormProps.setSearchByTitle = props.setSearchByTitle
 
     let headerContent;
-    if (props.movie === undefined){headerContent = <SearchForm { ...searchFormProps} />}
-    else {headerContent = <MovieDetails  movie={ props.movie}/>}    
+    if (props.selectedMovieId === undefined){headerContent = <SearchForm { ...searchFormProps} />}
+    else {headerContent = <MovieDetails  selectedMovieId={ props.selectedMovieId}/>}    
     
     
     const openDialog = () => {
@@ -31,13 +31,18 @@ export default function Header(props) {
         props.addMovie(e);
     }
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
+    const closeMovieDetails = () => {
+        props.setSelectedMovieId(undefined);
+        props.setSearchByTitle('');
+    }
     
-    const searchIcon = props.movie === undefined 
+    const searchIcon = props.selectedMovieId === undefined 
             ? <button className="add-button" onClick={openDialog} >+ add movie</button>
             : <img className="magnifier-icon" src="/magnifier.svg" 
-                onClick={() => props.handleSelection(-1)} alt="search icon"></img>;
+                onClick={closeMovieDetails} alt="search icon"></img>;
 
-    const height = props.movie === undefined ? "30%" : "50%";
+    const height = props.selectedMovieId === undefined ? "30%" : "50%";
 
     return  <div className="header" style={{height: height, transition: "height 0.15s ease-out"}}>
         <img className="header-bg" src="/netflix_image.jpg" alt="background"></img>
